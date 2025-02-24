@@ -1,0 +1,8 @@
+{
+  "command": "",
+  "char_name": "HeroA",
+  "response": {
+    "status": "success",
+    "message": "Character 'HeroA' deleted."
+  }
+}
