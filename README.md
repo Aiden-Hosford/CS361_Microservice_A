@@ -25,28 +25,31 @@ only contains the "data" parameter if it is a view (read) action.
 
 #### Request Example call
 
-request_data = {
-  "command": "create_character",
-  "char_name": "HeroA",
-  "role": "Vanguard",
-  "review": "Brave and daring.",
-  "ranking": "A"
-}
-with open("pipeline.json", "w") as f:
-    json.dump(request_data, f, indent=2)
+    request_data = {
+      "command": "create_character",
+      "char_name": "HeroA",
+      "role": "Vanguard",
+      "review": "Brave and daring.",
+      "ranking": "A"
+    }
+    
+    with open("pipeline.json", "w") as f:
+        json.dump(request_data, f, indent=2)
 
 #### Response Example Call
 
-import time
-import json
+    import time
+    import json
 
-time.sleep(2)  # wait for microservice to process
-with open("pipeline.json", "r") as f:
-    data = json.load(f)
-response_data = data.get("response")
-if response_data:
-    print("Status:", response_data.get("status"))
-    print("Message:", response_data.get("message"))
+    time.sleep(2)  # wait for microservice to process
+    
+    with open("pipeline.json", "r") as f:
+        data = json.load(f)
+    response_data = data.get("response")
+    
+    if response_data:
+        print("Status:", response_data.get("status"))
+        print("Message:", response_data.get("message"))
 
     if response_data.get("data"):
         print("Character data:", response_data["data"])
@@ -57,45 +60,44 @@ if response_data:
 Depending on the desired action, the JSON must specify a `command` plus any **required parameters**:
 
 #### 1. Create Character
-{
-  "command": "create_character",
-  "char_name": "<string>",
-  "role": "<string>",
-  "review": "<string>",
-  "ranking": "<string>" 
-}
+    {
+      "command": "create_character",
+      "char_name": "<string>",
+      "role": "<string>",
+      "review": "<string>",
+      "ranking": "<string>" 
+    }
 
 #### 2. View (read) Character
-{
-  "command": "view_character",
-  "char_name": "<string>"
-}
+    {
+      "command": "view_character",
+      "char_name": "<string>"
+    }
 
 #### 3. Update Character
-{
-  "command": "update_character",
-  "char_name": "<string>",
-  "role": "<string>",
-  "review": "<string>",
-  "ranking": "<string>"
-}
+    {
+      "command": "update_character",
+      "char_name": "<string>",
+      "role": "<string>",
+      "review": "<string>",
+      "ranking": "<string>"
+    }
 
 #### 4. Delete Character
-{
-  "command": "delete_character",
-  "char_name": "<string>"
-}
+    {
+      "command": "delete_character",
+      "char_name": "<string>"
+    }
 
 ### Response Format
-
-{
-  "command": "", 
-  "response": {
-    "status": "",
-    "message": "",
-    "data": ""
-  }
-}
+    {
+      "command": "", 
+      "response": {
+        "status": "",
+        "message": "",
+        "data": ""
+      }
+    }
 
 1. **command**: cleared or set to an empty string to indicate it has been processes
 2. **status**: success or error
